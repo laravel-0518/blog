@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'MainController@index')
     ->name('mainPage');
 
+Route::get('/blade', 'MainController@blade')
+    ->name('bladePage');
+
 Route::get('/about/{id?}', 'MainController@about')
     ->where('id', '[0-9]+')
     ->name('aboutRoute');
@@ -45,6 +48,17 @@ Route::match(['get', 'put', 'post'],'/login1', function () {
 });
 
 Route::view('/404', '404');
+
+Route::group(['prefix' => 'test'], function () {
+    Route::get('response1', 'MainController@response1');
+    Route::get('response2', 'MainController@response2');
+    Route::get('response3', 'MainController@response3');
+    Route::get('response4', 'MainController@response4');
+    Route::get('response5', 'MainController@response5');
+    Route::get('response6', 'MainController@response6');
+    Route::get('response7', 'MainController@response7');
+    Route::get('response8', 'MainController@response8');
+});
 
 /*Route::get('/about', function () {
     return 'test';
