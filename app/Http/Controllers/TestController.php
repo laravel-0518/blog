@@ -8,7 +8,9 @@ class TestController extends Controller
 {
     public function showLoginForm()
     {
-        return view('login');
+        return view('login', [
+            //'name' => 'Dmitrii',
+        ]);
     }
 
     public function postingLoginData(Request $request)
@@ -21,6 +23,9 @@ class TestController extends Controller
                 ->route('mainPage');
         }
 
-        return view('login', ['errorMessage' => 'Неправильный логин или пароль']);
+        return view('login', [
+            'errorMessage' => 'Неправильный логин или пароль',
+            'name' => 'Dmitrii',
+        ]);
     }
 }

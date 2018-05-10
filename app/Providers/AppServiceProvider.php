@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,27 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::share('name', $this->getName());
+        View::share('title', 'Default title');
+        View::share('page', 'login');
+
+
+        /*View::share('name', 'Guest');
+        View::share('name', 'Guest');
+        View::share('name', 'Guest');
+        View::share('name', 'Guest');*/
+
+        $isAuth = true;
+
+        View::composer(['404', 'login'], function ($view) use ($isAuth) {
+            if ($isAuth !== true) {
+                $name =  'guest';
+            } else {
+                $name =  'Dima';
+            }
+
+            $view->with('name', $name );
+        });
     }
 
     /**
@@ -24,5 +45,11 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    }
+
+
+    protected function getName()
+    {
+        return 'Vasya Pupkin';
     }
 }
