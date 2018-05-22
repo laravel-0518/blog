@@ -1,20 +1,36 @@
 <?php namespace App\Http\Controllers;
 
+use App\Includes\Classes\MyCounter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use App\Includes\Interfaces\CounterInterface;
 
 class MainController extends Controller
 {
+    protected $myCounter;
+
+    public function __construct(CounterInterface $myCounter)
+    {
+        //$this->myCounter = new MyCounter();
+        //$this->myCounter = resolve('AwesomeCounter');
+        $this->myCounter = $myCounter;
+    }
+
     public function index()
     {
-        $user = [
-            'data' => [
-                'name' => 'Dmitrii',
-                'surname' => 'Iurev',
-            ]
-        ];
+        $this->myCounter->increment();
+        $this->myCounter->increment();
+        $this->myCounter->increment();
+        $this->myCounter->decrement();
 
-        return $user;
+
+
+        /*$myCounter2 = resolve('AwesomeCounter');
+        $myCounter3 = resolve('AwesomeCounter');
+
+        dump($this->myCounter, $myCounter2, $myCounter3);*/
+
+        return $this->myCounter->getValue();
     }
 
     public function blade()
