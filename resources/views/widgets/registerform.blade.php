@@ -6,7 +6,7 @@
             <form class="form-horizontal" method="POST" enctype="application/x-www-form-urlencoded" action="{{ route('site.auth.registerPost') }}">
                 {{ csrf_field() }}
                 @if (isset($errors) && count($errors) > 0)
-                    <div class="">
+                    <div class="errors validation-errors">
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -18,14 +18,14 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-3 control-label">Имя/Никнейм</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputEmail3" name="name" placeholder="Ivan Ivanov">
+                        <input type="text" class="form-control" id="inputEmail3" name="name" placeholder="Ivan Ivanov" value="{{ old('name', '') }}">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-3 control-label">E-mail</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="inputEmail3" name="email" placeholder="user@domain.ru">
+                        <input type="text" class="form-control" id="inputEmail3" name="email" placeholder="user@domain.ru" value="{{ old('email', '') }}">
                     </div>
                 </div>
                 <div class="form-group">
