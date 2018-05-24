@@ -42,4 +42,42 @@ class MainController extends Controller
             'activeMenu' => 'feedback',
         ]);
     }
+
+    public function db()
+    {
+        $users = DB::table('users')
+            ->where('id', '2')
+            ->Where('name', 'Vasya')
+            ->select('name', 'email as user_email')
+            ->get(/*['name', 'email']*/);
+            //->count();
+            //->exists();
+
+        /*foreach ($users as $user) {
+            echo $user->name . ' - ' .  $user->email, '<br>';
+        }*/
+
+        DB::table('users')
+            ->where('id', 5)
+            ->update([
+                'name' => 'Ivan Ivanov',
+                'password' => 999999
+            ]);
+
+        debug($users);
+        //dump($users);
+
+        /*$id = DB::table('users')->insertGetId([
+            'email' => 'dima@asdaaa.ru',
+            'name' => 'Dmitriy Yuriev',
+            'password' => '123',
+            'created_at' => '2018-05-24 23:18:00'
+        ]);*/
+
+        //dump($id);
+        DB::table('users')
+            ->delete();
+
+        return 'DB';
+    }
 }

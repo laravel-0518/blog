@@ -21,7 +21,7 @@ Route::get('/post/{id}.html', 'PostController@post')
     ->name('site.posts.post')
     ->where('id', '[\d]+');
 
-Route::get('/db.html', 'MainController@db')
+Route::get('/db', 'MainController@db')
     ->name('site.main.db');
 
 
@@ -100,6 +100,10 @@ Route::group(['prefix' => 'test'], function () {
     Route::get('some', 'TestController@some');
 });
 */
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
