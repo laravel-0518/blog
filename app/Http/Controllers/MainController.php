@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -79,5 +80,74 @@ class MainController extends Controller
             ->delete();
 
         return 'DB';
+    }
+
+    public function orm()
+    {
+        /*$customer = new Customer();
+        $customer->name = 'Сидор';
+        $customer->surname = 'Сидоров';
+        $customer->patronymic = 'Сидорович';
+        $customer->age = 40;
+        $customer->birthdate = '1984-06-23';
+        $customer->notes = 'sdfsdfsdf';
+        $customer->save();
+
+        $customer2 = new Customer();
+        $customer2->name = 'Сидор1';
+        $customer2->surname = 'Сидоров2';
+        $customer2->patronymic = 'Сидорович3';
+        $customer2->age = 44;
+        $customer2->birthdate = '1984-06-23';
+        $customer2->notes = 'sdfsdfsdf';
+        $customer2->save();*/
+
+
+        /*$customer = Customer::find(6);
+        dump($customer->birthdate);*/
+
+        /*$customers = Customer::all();
+
+
+        foreach ($customers as $customer) {
+            dump($customer);
+            echo $customer->name . ' ' . $customer->surname, '<br>';
+        }*/
+
+        /*$customer = Customer::find(6);
+        dump($customer);
+        $customer->name = 'Петр';
+        $customer->surname = 'Петров';
+        $customer->patronymic = 'Петрович';
+        $customer->save();
+        dump($customer);*/
+
+        /*$customers1 = DB::table('customers')
+            ->where('name', '=', 'Ivan')
+            ->first();
+
+        $customers2 = Customer::where('name', '=', 'Ivan')
+            ->first();
+
+        dump($customers1->name, $customers2->name);
+
+        $customers2->name = 'dsfsdf';
+        $customers2->save();*/
+
+
+
+        $newModel = Customer::create([
+            'name' => 'Alfred',
+            'surname' => 'Ivanov',
+            'age' => 22,
+            'birthdate' => '1990-01-30',
+            'notes' => 'NTSchool student'
+        ]);
+
+        dump($newModel);
+
+
+
+        return 'OK';
     }
 }
