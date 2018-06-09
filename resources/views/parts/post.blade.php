@@ -14,7 +14,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-5">
                             <div class="meta__comments">
-                                <span class="meta__date"><span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ getRusDate($post->created_at) }}</span>
+                                <span class="meta__date"><span class="glyphicon glyphicon-calendar"></span> &nbsp; {{ $post->created_at }}</span>
                             </div>
                         </div>
                     </div>
@@ -31,8 +31,9 @@
     <div class="row">
         <div class="col-xs-10  col-xs-offset-1">
             <div class="post-content--front-page">
+                <h4>{{ $author }}</h4>
                 <h2 class="front-page-title">
-                    <a href="{{ route('site.posts.post', ['id' => $post->id]) }}">{{ $post->caption }}</a>
+                    <a href="{{ route('site.posts.post', ['id' => $post->id]) }}">{{ $post->title }}</a>
                 </h2>
                 @if ($post->tagline)
                     <h3>{{ $post->tagline }}</h3>
