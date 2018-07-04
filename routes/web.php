@@ -63,6 +63,14 @@ Route::post('/create', 'PostController@createPost')
     ->name('site.posts.createPost')
     ->middleware('auth');
 
+Route::get('/ajax', 'MainController@ajaxSimple')
+    ->name('site.main.ajaxSimple');
+Route::post('/ajax', 'MainController@postAjaxSimple')
+    ->name('site.main.postAjaxSimple');
+
+Route::get('/feedback2', 'MainController@feedback2')
+    ->name('site.main.feedback2');
+
 /*  
 Route::get('/', function () {
     return view('welcome');
