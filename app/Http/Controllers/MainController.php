@@ -56,6 +56,15 @@ class MainController extends Controller
         ]);
     }
 
+    public function feedback2()
+    {
+        return view('layouts.primary', [
+            'page' => 'pages.feedback2',
+            'title' => 'Написать мне',
+            'activeMenu' => 'feedback',
+        ]);
+    }
+
     public function feedbackPost(Request $request)
     {
         $this->validate($request, [
@@ -85,6 +94,29 @@ class MainController extends Controller
             'content' => 'Спасибо за ваше сообщение!',
             'link' => '<a href="javascript:history.back()">Вернуться назад</a>',
             'activeMenu' => 'feedback',
+        ]);
+    }
+
+    public function ajaxSimple()
+    {
+        return view('layouts.primary', [
+            'page' => 'pages.ajax',
+            'title' => 'Ajax test',
+        ]);
+    }
+
+    public function postAjaxSimple(Request $request)
+    {
+        $name = $request->input('name');
+        $surname = $request->input('surname');
+        $age = $request->input('age');
+
+        //abort(500);
+
+        return view('api.simple', [
+            'name' => $name,
+            'surname' => $surname,
+            'age' => $age,
         ]);
     }
 }
